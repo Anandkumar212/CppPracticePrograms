@@ -1,0 +1,69 @@
+#include <iostream>
+#include <memory>
+
+using namespace std;
+
+class Shape
+{
+public:
+    virtual void draw() const = 0;
+    virtual ~Shape() = default;
+};
+
+class Circle : public Shape
+{
+public:
+    void draw() const override
+    {
+        cout << "Draw Circle" << endl;
+    }
+};
+
+class Square : public Shape
+{
+public:
+    void draw() const override
+    {
+        cout << "Draw Square" << endl;
+    }
+};
+
+class Rectangle : public Shape
+{
+public:
+    void draw() const override
+    {
+        cout << "Draw Rectangle" << endl;
+    }
+};
+
+class ShapeFactory
+{
+public:
+    static unique_ptr<Shape> createShape(const string& type)
+    {
+        if(type == "Circle")
+            return unique_ptr<Shape>(new Circle());
+
+        if(type == "Square")
+            return unique_ptr<Shape>(new Square());
+
+        if(type == "Rectangle")
+            return unique_ptr<Shape>(new Rectangle());
+
+        return nullptr;
+    }
+};
+
+int main()
+{
+    auto Shape1 = ShapeFactory::createShape("Circle");
+    auto Shape2 = ShapeFactory::createShape("Square");
+    auto Shape3 = ShapeFactory::createShape("Rectangle");
+
+    if(Shape1) Shape1->draw();
+    if(Shape2) Shape2->draw();
+    if(Shape3) Shape3->draw();
+
+    return 0;
+}
