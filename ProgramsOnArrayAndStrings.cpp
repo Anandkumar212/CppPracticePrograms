@@ -929,3 +929,36 @@ int main(){
     
     compress (s);
 }
+
+
+//using stack the sentence is reversed
+#include <iostream>
+#include <stack>
+
+using namespace std;
+
+int  main(){
+    
+    string s = "the sky is blue";
+    
+    string word="";
+    
+    stack<string>st;
+    
+    
+    for(int i =0; i<=s.length(); i++){
+        if(s[i] ==' ' || s[i] == '\0'){
+            if(!word.empty()){
+                st.push(word);
+                word ="";
+            }
+        }
+        else{
+            word +=s[i];
+        }
+    }
+    while(!st.empty()){
+       cout <<st.top() << " ";
+       st.pop();
+    }
+}
