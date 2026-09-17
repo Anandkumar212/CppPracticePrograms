@@ -957,6 +957,10 @@ int  main(){
             word +=s[i];
         }
     }
+
+      if(!word.empty()){
+        st.push(word);
+    }
     while(!st.empty()){
        cout <<st.top() << " ";
        st.pop();
